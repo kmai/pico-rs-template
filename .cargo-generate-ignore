@@ -1,3 +1,4 @@
 cargo-generate.toml
 .cargo-generate-ignore
 LICENSE
+.github
