@@ -1,0 +1,23 @@
+[package]
+name = "{{project-name}}"
+version = "0.1.0"
+edition = "2024"
+
+[[bin]]
+name = "{{project-name}}"
+test = false
+bench = false
+
+[dependencies]
+rp2040-hal   = { version = "0.10", features = ["rt", "critical-section-impl"] }
+rp2040-boot2 = "0.3"
+cortex-m-rt  = "0.7"
+cortex-m     = "0.7"           # no features — critical-section-single-core must NOT be enabled
+embedded-hal = "1.0"
+panic-halt   = "0.2"
+
+[profile.release]
+opt-level     = "s"
+lto           = true
+codegen-units = 1
+debug         = true

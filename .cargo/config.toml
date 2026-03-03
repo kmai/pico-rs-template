@@ -1,0 +1,20 @@
+[build]
+target = "thumbv6m-none-eabi"   # Cortex-M0+ — the RP2040's core
+
+[target.thumbv6m-none-eabi]
+# Uncomment ONE of the lines below depending on your flash tool:
+
+# Option A — probe-rs (recommended, works with picoprobe/CMSIS-DAP)
+# runner = "probe-rs run --chip RP2040"
+
+# Option B — elf2uf2-rs (drag-and-drop via USB, no debugger needed)
+runner = "elf2uf2-rs -d"
+
+rustflags = [
+  "-C", "link-arg=--nmagic",
+  "-C", "link-arg=-Tlink.x",
+]
+
+# Make `cargo xtask` work from anywhere in the workspace
+[alias]
+xtask = "run --package xtask --"
